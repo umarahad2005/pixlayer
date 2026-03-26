@@ -29,6 +29,7 @@ export default function CanvasEditor() {
     const layers = useEditorStore((s) => s.layers);
 
     const [segmentPoints, setSegmentPoints] = useState([]);
+    const [renderTrigger, setRenderTrigger] = useState(0);
     const {
         isModelLoaded,
         isEncoding,
@@ -128,7 +129,7 @@ export default function CanvasEditor() {
                 ctx.stroke();
             });
         }
-    }, [currentImage, currentMask, segmentPoints]);
+    }, [currentImage, currentMask, segmentPoints, renderTrigger]);
 
     // Load image element
     useEffect(() => {
@@ -136,9 +137,8 @@ export default function CanvasEditor() {
             const img = new Image();
             img.onload = () => {
                 imgRef.current = img;
-                // Trigger re-render
-                const canvas = canvasRef.current;
-                if (canvas) canvas.dispatchEvent(new Event('render'));
+                // Trigger re-render directly to execute canvas draw useEffect
+                setRenderTrigger((prev) => prev + 1);
             };
             img.src = currentImage.src;
         }

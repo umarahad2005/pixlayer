@@ -34,6 +34,7 @@ export function useSegmentation() {
                 executionProviders = ['wasm'];
                 ort.env.wasm.numThreads = navigator.hardwareConcurrency || 4;
                 ort.env.wasm.simd = true;
+                ort.env.wasm.wasmPaths = '/';
                 encoderRef.current = await ort.InferenceSession.create(
                     `${MODEL_BASE}/sam2_hiera_base_plus_encoder.onnx`,
                     { executionProviders }

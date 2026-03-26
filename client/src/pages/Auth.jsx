@@ -37,7 +37,7 @@ export default function Auth() {
     };
 
     return (
-        <div className="min-h-screen bg-px-bg flex items-center justify-center px-4">
+        <div className="h-screen w-full bg-px-bg overflow-y-auto flex items-center justify-center px-4 py-8">
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -61,8 +61,8 @@ export default function Auth() {
                         <button
                             onClick={() => setIsLogin(true)}
                             className={`flex-1 py-2 font-mono text-xs rounded-sm transition-default cursor-pointer ${isLogin
-                                    ? 'bg-px-accent text-white'
-                                    : 'text-px-text-muted hover:text-px-text'
+                                ? 'bg-px-accent text-white'
+                                : 'text-px-text-muted hover:text-px-text'
                                 }`}
                         >
                             Log in
@@ -70,8 +70,8 @@ export default function Auth() {
                         <button
                             onClick={() => setIsLogin(false)}
                             className={`flex-1 py-2 font-mono text-xs rounded-sm transition-default cursor-pointer ${!isLogin
-                                    ? 'bg-px-accent text-white'
-                                    : 'text-px-text-muted hover:text-px-text'
+                                ? 'bg-px-accent text-white'
+                                : 'text-px-text-muted hover:text-px-text'
                                 }`}
                         >
                             Register

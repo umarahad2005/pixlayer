@@ -39,7 +39,7 @@ export default function Landing() {
     const navigate = useNavigate();
 
     return (
-        <div className="min-h-screen bg-px-bg overflow-y-auto">
+        <div className="h-screen w-full bg-px-bg overflow-y-auto overflow-x-hidden">
             {/* Nav */}
             <nav className="flex items-center justify-between px-8 py-5 border-b border-px-border">
                 <div className="flex items-center gap-2">
