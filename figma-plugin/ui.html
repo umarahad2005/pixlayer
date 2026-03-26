@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            margin: 0;
+            padding: 16px;
+            font-family: 'Inter', sans-serif;
+            background: #0D0D0F;
+            color: #E4E4E7;
+        }
+
+        h2 {
+            font-size: 14px;
+            margin: 0 0 12px;
+            color: #6C63FF;
+        }
+
+        p {
+            font-size: 12px;
+            color: #71717A;
+            margin: 0 0 16px;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .upload-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            padding: 10px;
+            background: #6C63FF;
+            color: white;
+            border: none;
+            border-radius: 2px;
+            font-size: 12px;
+            font-family: 'JetBrains Mono', monospace;
+            cursor: pointer;
+        }
+
+        .upload-btn:hover {
+            background: #8B85FF;
+        }
+
+        .status {
+            margin-top: 12px;
+            font-size: 11px;
+            color: #71717A;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>PIXLAYER Importer</h2>
+    <p>Select a PIXLAYER JSON export file to import layers into Figma.</p>
+    <label class="upload-btn">
+        Select JSON File
+        <input type="file" id="fileInput" accept=".json" />
+    </label>
+    <div class="status" id="status"></div>
+
+    <script>
+        document.getElementById('fileInput').addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = (ev) => {
+                try {
+                    const data = JSON.parse(ev.target.result);
+                    document.getElementById('status').textContent = `Importing ${data.layers.length} layers...`;
+                    parent.postMessage({ pluginMessage: { type: 'import', data } }, '*');
+                } catch {
+                    document.getElementById('status').textContent = 'Invalid JSON file';
+                }
+            };
+            reader.readAsText(file);
+        });
+    </script>
+</body>
+
+</html>

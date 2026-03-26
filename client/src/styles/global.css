@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+/* ─── PIXLAYER Design Tokens ─── */
+@theme {
+  --color-px-bg: #0D0D0F;
+  --color-px-surface: #141416;
+  --color-px-surface-elevated: #1A1A1E;
+  --color-px-border: #1E1E22;
+  --color-px-accent: #6C63FF;
+  --color-px-accent-hover: #8B85FF;
+  --color-px-accent-glow: rgba(108, 99, 255, 0.15);
+  --color-px-text: #E4E4E7;
+  --color-px-text-muted: #71717A;
+  --color-px-success: #22C55E;
+  --color-px-warning: #F59E0B;
+  --color-px-error: #EF4444;
+  --font-display: 'Syne', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-body: 'Inter', sans-serif;
+}
+
+/* ─── Global Resets ─── */
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html, body, #root {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  body {
+    background-color: var(--color-px-bg);
+    color: var(--color-px-text);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-px-border);
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-px-text-muted);
+  }
+}
+
+/* ─── Utility Classes ─── */
+@layer utilities {
+  .text-display {
+    font-family: var(--font-display);
+  }
+  .text-mono {
+    font-family: var(--font-mono);
+  }
+  .text-body {
+    font-family: var(--font-body);
+  }
+  .glow-accent {
+    box-shadow: 0 0 20px var(--color-px-accent-glow), 0 0 40px var(--color-px-accent-glow);
+  }
+  .transition-default {
+    transition: all 150ms ease;
+  }
+}

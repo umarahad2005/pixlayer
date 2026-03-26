@@ -1,0 +1,38 @@
+# Dependencies
+node_modules/
+
+# Environment variables
+.env
+.env.local
+.env.production
+
+# Build output
+client/dist/
+client/build/
+server/dist/
+
+# ONNX models (too large for git)
+*.onnx
+public/models/
+
+# SAM2 cloned repo
+temp-sam2/
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Docker
+docker-compose.override.yml
+
+# Agent / AI config (optional - remove if you want these tracked)
+# .agent/
