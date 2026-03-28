@@ -56,12 +56,12 @@ export default function TopBar() {
             {/* Center — Tools */}
             <div className="flex items-center gap-1 bg-px-bg rounded-sm p-0.5 border border-px-border">
                 {tools.map((tool) => (
-                    <Tooltip key={tool.id} content={`${tool.label} (${tool.shortcut})`}>
+                    <Tooltip key={tool.id} content={`${tool.label} (${tool.shortcut})`} position="bottom">
                         <button
                             onClick={() => handleToolChange(tool.id)}
                             className={`p-2 rounded-sm transition-default cursor-pointer ${activeTool === tool.id
-                                    ? 'bg-px-accent text-white'
-                                    : 'text-px-text-muted hover:text-px-text hover:bg-px-surface'
+                                ? 'bg-px-accent text-white'
+                                : 'text-px-text-muted hover:text-px-text hover:bg-px-surface'
                                 }`}
                         >
                             <tool.icon size={16} />

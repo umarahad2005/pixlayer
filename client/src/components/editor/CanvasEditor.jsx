@@ -96,7 +96,25 @@ export default function CanvasEditor() {
             const x = (width - w) / 2;
             const y = (height - h) / 2;
             scaleRef.current = { scale, offsetX: x, offsetY: y };
-            ctx.drawImage(img, x, y, w, h);
+
+            // Draw layers
+            layers.forEach((layer) => {
+                if (!layer.visible) return;
+                
+                if (layer.isBase) {
+                    ctx.drawImage(img, x, y, w, h);
+                } else if (layer.imageData) {
+                    // Calculate exact pixel position scaled to canvas
+                    const lx = x + (layer.bounds.x / img.width) * w;
+                    const ly = y + (layer.bounds.y / img.height) * h;
+                    const lw = (layer.bounds.w / img.width) * w;
+                    const lh = (layer.bounds.h / img.height) * h;
+                    
+                    const layerCanvas = new OffscreenCanvas(layer.bounds.w, layer.bounds.h);
+                    layerCanvas.getContext('2d').putImageData(layer.imageData, 0, 0);
+                    ctx.drawImage(layerCanvas, lx, ly, lw, lh);
+                }
+            });
 
             // Draw mask overlay
             if (currentMask) {

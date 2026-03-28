@@ -2,30 +2,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Eye, EyeOff, Lock, Unlock, GripVertical, Trash2 } from 'lucide-react';
 import { useEditorStore } from '../../store/editorStore';
 
-const placeholderLayers = [
-    {
-        id: 'placeholder-1',
-        name: 'Background',
-        visible: true,
-        locked: false,
-        color: '#6C63FF',
-    },
-    {
-        id: 'placeholder-2',
-        name: 'Layer 1',
-        visible: true,
-        locked: false,
-        color: '#22C55E',
-    },
-    {
-        id: 'placeholder-3',
-        name: 'Layer 2',
-        visible: true,
-        locked: true,
-        color: '#F59E0B',
-    },
-];
-
 function LayerItem({ layer, isActive, onSelect, onToggleVisibility, onToggleLock, onRemove }) {
     return (
         <motion.div
@@ -98,7 +74,7 @@ export default function LayerPanel() {
     const toggleLayerLock = useEditorStore((s) => s.toggleLayerLock);
     const removeLayer = useEditorStore((s) => s.removeLayer);
 
-    const displayLayers = layers.length > 0 ? layers : placeholderLayers;
+    const displayLayers = layers;
 
     return (
         <div className="flex flex-col w-[240px] h-full bg-px-surface border-r border-px-border shrink-0">

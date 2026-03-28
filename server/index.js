@@ -4,6 +4,7 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import mongoSanitize from 'express-mongo-sanitize';
 import { config } from 'dotenv';
+import { connectDB } from './config/db.js';
 
 import authRoutes from './routes/auth.js';
 import projectRoutes from './routes/projects.js';
@@ -11,6 +12,9 @@ import segmentationRoutes from './routes/segmentation.js';
 import exportRoutes from './routes/export.js';
 
 config();
+
+// Connect to database
+await connectDB();
 
 const app = express();
 

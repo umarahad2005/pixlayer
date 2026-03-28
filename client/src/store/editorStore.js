@@ -7,12 +7,26 @@ export const useEditorStore = create((set, get) => ({
     currentImage: null,
     imageEmbedding: null,
 
-    setImage: (image) => set({
-        currentImage: image,
-        layers: [],
-        imageEmbedding: null,
-        segmentPoints: [],
-        currentMask: null,
+    setImage: (image) => set((state) => {
+        layerCounter = 1;
+        const baseLayer = {
+            id: `layer-${Date.now()}-0`,
+            name: 'Background',
+            visible: true,
+            locked: true,
+            isBase: true,
+            color: '#6C63FF'
+        };
+        return {
+            currentImage: image,
+            layers: [baseLayer],
+            imageEmbedding: null,
+            segmentPoints: [],
+            currentMask: null,
+            activeLayerId: baseLayer.id,
+            activeTool: 'select',
+            history: [[baseLayer]]
+        };
     }),
     setImageEmbedding: (embedding) => set({ imageEmbedding: embedding }),
 
